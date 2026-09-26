@@ -89,7 +89,7 @@ CODE_FONT = ("Courier New", 11)
 HEADER_FONT = ("Arial", 11, "bold")
 
 LINE_H = 20
-FIRST_LINE_Y = -232          # turtle-y of the first code line's center
+FIRST_LINE_Y = -232          
 PANEL_TOP = -195
 PANEL_BOTTOM = FIRST_LINE_Y - (len(CODE_LINES) - 1) * LINE_H - LINE_H // 2 - 8
 INFO_CHARS = 40            
@@ -98,7 +98,6 @@ PANEL_PAD = 32
 
 
 def measure_char_width():
-    # measure with the SAME canvas/font that draws the text, so it always fits
     canvas = screen.getcanvas()
     probe = canvas.create_text(0, 0, text="0" * 100, font=CODE_FONT, anchor="nw")
     x1, _, x2, _ = canvas.bbox(probe)
@@ -290,7 +289,6 @@ all_active_turtles = []
 def update_label(d):
     canvas = screen.getcanvas()
     
-    # Exact coordinate sync dynamically fetching canvas dimensions
     w = canvas.winfo_width()
     h = canvas.winfo_height()
     if w <= 1:
@@ -474,7 +472,6 @@ def start_next_move(callback_id=None):
     show_step(line, n, source, target, aux, depth, text)
 
     if kind == "trace":
-        # just show the highlighted line for a moment, then continue
         screen.ontimer(lambda rid=run_id: start_next_move(rid), CODE_STEP_MS)
         return
 
